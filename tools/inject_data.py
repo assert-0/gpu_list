@@ -58,7 +58,7 @@ def main():
         GPUModel(
             modelName="RTX 4090",
             manufacturer="NVIDIA",
-            chip=GPUChipReference(id=ad_102_id),
+            chip=GPUChipReference(_id=ad_102_id),
             launchDate="2022-10-12",
             launchPrice="1599",
             memory=24,
@@ -68,7 +68,7 @@ def main():
         GPUModel(
             modelName="RTX 6000 Ada",
             manufacturer="NVIDIA",
-            chip=GPUChipReference(id=ad_102_id),
+            chip=GPUChipReference(_id=ad_102_id),
             launchDate="2022-12-03",
             launchPrice="6800",
             memory=48,
@@ -78,7 +78,7 @@ def main():
         GPUModel(
             modelName="RTX 3090ti",
             manufacturer="NVIDIA",
-            chip=GPUChipReference(id=ga_102_id),
+            chip=GPUChipReference(_id=ga_102_id),
             launchDate="2022-03-29",
             launchPrice="1999",
             memory=24,
@@ -88,7 +88,7 @@ def main():
         GPUModel(
             modelName="RTX 3090",
             manufacturer="NVIDIA",
-            chip=GPUChipReference(id=ga_102_id),
+            chip=GPUChipReference(_id=ga_102_id),
             launchDate="2020-09-24",
             launchPrice="1499",
             memory=24,
@@ -98,7 +98,7 @@ def main():
         GPUModel(
             modelName="H100 GPU accelerator (PCIe)",
             manufacturer="NVIDIA",
-            chip=GPUChipReference(id=gh_100_id),
+            chip=GPUChipReference(_id=gh_100_id),
             launchDate="2022-03-22",
             launchPrice="25000",
             memory=80,
@@ -108,7 +108,7 @@ def main():
         GPUModel(
             modelName="Radeon RX 6650 XT",
             manufacturer="AMD",
-            chip=GPUChipReference(id=navi_23_id),
+            chip=GPUChipReference(_id=navi_23_id),
             launchDate="2022-05-10",
             launchPrice="399",
             memory=8,
@@ -118,7 +118,7 @@ def main():
         GPUModel(
             modelName="Radeon RX 6600 XT",
             manufacturer="AMD",
-            chip=GPUChipReference(id=navi_23_id),
+            chip=GPUChipReference(_id=navi_23_id),
             launchDate="2021-08-11",
             launchPrice="379",
             memory=8,
@@ -128,7 +128,7 @@ def main():
         GPUModel(
             modelName="Radeon Pro W6600",
             manufacturer="AMD",
-            chip=GPUChipReference(id=navi_23_id),
+            chip=GPUChipReference(_id=navi_23_id),
             launchDate="2021-06-08",
             launchPrice="649",
             memory=8,
@@ -138,7 +138,7 @@ def main():
         GPUModel(
             modelName="Radeon RX 7900 XT",
             manufacturer="AMD",
-            chip=GPUChipReference(id=navi_31_id),
+            chip=GPUChipReference(_id=navi_31_id),
             launchDate="2022-12-13",
             launchPrice="899",
             memory=20,
@@ -148,7 +148,7 @@ def main():
         GPUModel(
             modelName="Radeon Pro W7900",
             manufacturer="AMD",
-            chip=GPUChipReference(id=navi_31_id),
+            chip=GPUChipReference(_id=navi_31_id),
             launchDate="2023-04-13",
             launchPrice="3999",
             memory=48,

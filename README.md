@@ -7,11 +7,19 @@ along with a MongoDB database dump. All data is sourced from the respective Wiki
 Creative Commons Attribution Share-Alike (CC BY-SA) license.
 
 ## Repository metadata
-**License:**
-- Creative Commons Attribution Share-Alike (CC BY-SA)
-- https://creativecommons.org/licenses/by-sa/4.0/ 
+**License:**  
+Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
-**Data sources:**
+This work is licensed under a
+[Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
+
+[![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
+
+[cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
+[cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
+[cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
+
+**Data sources**:
 - https://en.wikipedia.org/wiki/List_of_Nvidia_graphics_processing_units
 - https://en.wikipedia.org/wiki/List_of_AMD_graphics_processing_units
 
