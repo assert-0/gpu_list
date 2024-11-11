@@ -34,9 +34,6 @@ def main() -> None:
     gpu_models = GPUModel.filter()
     model_dicts = [model.to_dict() for model in gpu_models]
 
-    for model_dict in model_dicts:
-        model_dict["chip"].pop("id")
-
     export_json(model_dicts)
     export_csv(model_dicts)
 

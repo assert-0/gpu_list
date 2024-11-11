@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/assert-0/gpu_list",
+  "type": "array",
+  "title": "GPU List",
+  "description": "A list of various GPUs",
+  "items": {
+    "type": "object",
+    "title": "GPU Model",
+    "description": "A GPU model (contains a GPU chip)",
+    "properties": {
+      "modelName": {
+        "type": "string",
+        "title": "Model Name",
+        "description": "The name of the GPU model"
+      },
+      "manufacturer": {
+        "type": "string",
+        "title": "Manufacturer",
+        "description": "The manufacturer of the GPU model"
+      },
+      "chip": {
+        "type": "object",
+        "title": "Chip",
+        "description": "The GPU chip",
+        "properties": {
+          "chipName": {
+            "type": "string",
+            "title": "Chip Name",
+            "description": "The name of the chip"
+          },
+          "architecture": {
+            "type": "string",
+            "title": "Architecture",
+            "description": "The architecture of the chip"
+          },
+          "fab": {
+            "type": "string",
+            "title": "Fab",
+            "description": "The fabrication process of the chip"
+          },
+          "transistors": {
+            "type": "number",
+            "title": "Transistors",
+            "description": "The number of transistors in the chip"
+          },
+          "dieSize": {
+            "type": "number",
+            "title": "Die Size",
+            "description": "The size of the chip's die"
+          }
+        },
+        "required": ["chipName", "architecture", "fab", "transistors", "dieSize"]
+      },
+      "launchDate": {
+        "type": "string",
+        "title": "Launch Date",
+        "description": "The date the GPU model was launched"
+      },
+      "launchPrice": {
+        "type": "string",
+        "title": "Launch Price",
+        "description": "The launch price of the GPU model"
+      },
+      "memory": {
+        "type": "integer",
+        "title": "Memory",
+        "description": "The amount of memory in the GPU model"
+      },
+      "computeUnits": {
+        "type": "integer",
+        "title": "Compute Units",
+        "description": "The number of compute units in the GPU model"
+      },
+      "performance": {
+        "type": "number",
+        "title": "Performance",
+        "description": "The performance of the GPU model"
+      }
+    },
+    "required": [
+      "modelName", "manufacturer", "chip", "launchDate", "launchPrice", "memory", "computeUnits", "performance"
+    ]
+  }
+}

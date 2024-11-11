@@ -1,7 +1,7 @@
 from bson import ObjectId
 from pymongo.database import DBRef
 
-from util import DBModel
+from .util import DBModel
 
 
 # GPUDB utils
@@ -25,6 +25,15 @@ class GPUChip(GPUDB):
     fab: str
     transistors: float
     dieSize: float
+
+    def to_dict(self) -> dict:
+        return {
+            "chipName": self.chipName,
+            "architecture": self.architecture,
+            "fab": self.fab,
+            "transistors": self.transistors,
+            "dieSize": self.dieSize
+        }
 
 
 class GPUModel(GPUDB):

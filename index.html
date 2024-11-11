@@ -1,5 +1,92 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>GPU list</title>
+    </head>
+    <body>
+        <h1>GPU list - index</h1>
+        <h2>Database export downloads</h2>
+        <p>
+            <a href="/static/gpu_models.csv">Download GPU list as CSV</a>
+        </p>
+        <p>
+            <a href="/static/gpu_models.json">Download GPU list as JSON</a>
+        </p>
+        <h2>
+            <a href="/static/datatable.html">View and filter data</a>
+        </h2>
+        <h2>
+            About this data
+        </h2>
+        <h3>Description</h3>
+        <p>
+            This repository contains an open-access list of GPU models from Nvidia and AMD. This list is not exhaustive and only
+            provides a small sample of all GPU models produced by these companies. The data is distributed in JSON and CSV,
+            along with a MongoDB database dump. All data is sourced from the respective Wikipedia pages, and release under the
+            Creative Commons Attribution Share-Alike (CC BY-SA) license.
+        </p>
+        <h3>License</h3>
+        <p>
+            This work is licensed under a
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/"> Creative Commons Attribution-ShareAlike 4.0 International License </a>
+        </p>
+        <h3>Data sources</h3>
+        <ol>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/List_of_Nvidia_graphics_processing_units">Nvidia GPU list</a>
+            </li>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/List_of_AMD_graphics_processing_units">AMD GPU list</a>
+            </li>
+        </ol>
+        <h3>Repository author</h3>
+        <p>
+            Nikola Sočec
+        </p>
+        <h3>Repository version</h3>
+        <p>
+            v2.0
+        </p>
+        <h3>Language</h3>
+        <p>
+            English
+        </p>
+        <h3>Release date</h3>
+        <p>
+            2024-11-11
+        </p>
+        <h3>Export MIME types</h3>
+        <p>
+            application/json, text/csv, application/bson
+        </p>
+        <h3>Date format</h3>
+        <p>
+            YYYY-MM-DD
+        </p>
+        <h3>Currency</h3>
+        <p>
+            USD
+        </p>
+        <h3>Data fields</h3>
+        <p>GPUModel class</p>
+        <ul>
+            <li>modelName: str</li>
+            <li>manufacturer: str</li>
+            <li>chip: GPUChip</li>
+            <li>launchDate: date</li>
+            <li>launchPrice: int</li>
+            <li>memory: int</li>
+            <li>computeUnits: int</li>
+            <li>performance: int</li>
+        </ul>
+        <p>GPUChip class</p>
+        <ul>
+            <li>chipName: str</li>
+            <li>architecture: str</li>
+            <li>fab: str</li>
+            <li>transistors: float</li>
+            <li>dieSize: float</li>
+        </ul>
+        <p>For more information, see <a href="https://github.com/assert-0/gpu_list/blob/main/README.md">README.md</a></p>
+    </body>
 </html>
