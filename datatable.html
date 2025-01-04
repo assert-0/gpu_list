@@ -84,7 +84,7 @@
                 filter_element.value = filter_value;
 
                 const domain = window.location.origin;
-                const endpoint = 'api/filter';
+                const endpoint = 'api/v2/filter';
                 let params = "filter_field=" + filter_field + "&filter_value=" + filter_value;
 
                 fetch(domain + "/" + endpoint + "?" + params)
@@ -97,7 +97,7 @@
 
             function getAllModels() {
                 const domain = window.location.origin;
-                const endpoint = 'api/all';
+                const endpoint = 'api/v2/all';
                 let params = "";
 
                 fetch(domain + "/" + endpoint + "?" + params)
@@ -127,13 +127,13 @@
 
                 if (filter_value) {
                     const domain = window.location.origin;
-                    const endpoint = 'api/filter';
+                    const endpoint = 'api/v2/filter';
                     let params = "filter_field=" + filter_field + "&filter_value=" + filter_value + "&export=" + exportType;
 
                     window.location.href = domain + "/" + endpoint + "?" + params;
                 } else {
                     const domain = window.location.origin;
-                    const endpoint = 'api/all';
+                    const endpoint = 'api/v2/all';
                     let params = "export=" + exportType;
 
                     window.location.href = domain + "/" + endpoint + "?" + params;

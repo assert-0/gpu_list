@@ -3,7 +3,7 @@ import io
 import json
 from typing import List, Any
 
-from ..tools.model import GPUModel, GPUChip
+from ...tools.model import GPUModel
 
 
 def filter_gpu_model(model_field: str, filter_value: Any) -> List[GPUModel]:

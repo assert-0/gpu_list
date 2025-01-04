@@ -46,8 +46,11 @@ class GPUModel(GPUDB):
     computeUnits: int
     performance: float
 
+    def get_chip(self) -> GPUChip:
+        return GPUChip.get({"_id": self.chip.id})
+
     def to_dict(self) -> dict:
-        chip = GPUChip.get({"_id": self.chip.id}).to_dict()
+        chip = self.get_chip().to_dict()
 
         return {
             "modelName": self.modelName,

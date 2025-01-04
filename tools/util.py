@@ -68,3 +68,7 @@ class DBModel(BaseModel, ABC):
         document = self.to_db()
         document.pop("id")
         collection.replace_one({"_id": self.id}, document, upsert=True)
+
+    def delete(self) -> None:
+        collection = self.__class__.get_collection()
+        collection.delete_one({"_id": self.id})

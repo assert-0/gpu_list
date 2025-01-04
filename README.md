@@ -24,7 +24,7 @@ This work is licensed under a
 - https://en.wikipedia.org/wiki/List_of_AMD_graphics_processing_units
 
 **Repository Author:** Nikola Sočec  
-**Version:** v2.0  
+**Version:** v3.0  
 **Language:** English  
 **Release date:** 2024-11-11  
 **Export MIME types:** text/csv, application/json, application/bson  

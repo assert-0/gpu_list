@@ -1,4 +1,4 @@
-from ..tools.model import GPUModel, GPUChip
+from ...tools.model import GPUModel, GPUChip
 
 
 FILTER_TO_FIELD_MAPPING = {

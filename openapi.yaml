@@ -1,0 +1,631 @@
+openapi: 3.0.3
+
+info:
+  title: GPU List
+  description: |-
+    This repository contains an open-access list of GPU models from Nvidia and AMD. This list is not exhaustive and only
+    provides a small sample of all GPU models produced by these companies. The data is distributed in JSON and CSV,
+    along with a MongoDB database dump. All data is sourced from the respective Wikipedia pages, and release under the
+    Creative Commons Attribution Share-Alike (CC BY-SA) license.
+  contact:
+    email: "ns53169@fer.hr"
+  license:
+    name: Creative Commons Attribution-ShareAlike 4.0 International License
+    url: http://creativecommons.org/licenses/by-sa/4.0/
+  version: 3.0.0
+
+servers:
+  - url: "/api/v3"
+    description: "Production API path"
+
+paths:
+  "/gpus":
+    get:
+      summary: "Get all GPUs"
+      description: "Returns a list of all the GPUs from the database"
+      parameters: [ ]
+      responses:
+        "200":
+          description: "Fetch successful"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MultipleGPUResponse"
+        "204":
+          description: "Database empty"
+    post:
+      summary: "Add a new GPU"
+      description: "Adds a new GPU to the database"
+      requestBody:
+        required: true
+        description: "The GPU to add"
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GPUModel"
+      responses:
+        "201":
+          description: "GPU added successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUResponse"
+        "400":
+          description: "Invalid GPU model data"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    put:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    patch:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    delete:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+
+  "/gpus/{gpuId}":
+    get:
+      summary: "Get a single GPU"
+      description: "Returns a single GPU from the database"
+      parameters:
+        - name: "gpuId"
+          in: "path"
+          description: "The ID of the GPU to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Fetch successful"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUResponse"
+        "404":
+          description: "GPU not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    post:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuId"
+          in: "path"
+          description: "The ID of the GPU to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    put:
+      summary: "Update a single GPU"
+      description: "Updates a single GPU in the database"
+      parameters:
+        - name: "gpuId"
+          in: "path"
+          description: "The ID of the GPU to update"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        description: "The GPU to update"
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GPUModel"
+      responses:
+        "200":
+          description: "GPU updated successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUResponse"
+        "400":
+          description: "Invalid GPU model data"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+        "404":
+          description: "GPU not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    patch:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuId"
+          in: "path"
+          description: "The ID of the GPU to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    delete:
+      summary: "Delete a single GPU"
+      description: "Deletes a single GPU from the database"
+      parameters:
+        - name: "gpuId"
+          in: "path"
+          description: "The ID of the GPU to delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "GPU deleted successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUResponse"
+        "404":
+          description: "GPU not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+
+  "/gpuchips":
+    get:
+      summary: "Get all GPU chips"
+      description: "Returns a list of all the GPU chips from the database"
+      parameters: [ ]
+      responses:
+        "200":
+          description: "Fetch successful"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MultipleGPUChipResponse"
+        "204":
+          description: "Database empty"
+    post:
+      summary: "Add a new GPU chip"
+      description: "Adds a new GPU chip to the database"
+      requestBody:
+        required: true
+        description: "The GPU chip to add"
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GPUChipModel"
+      responses:
+        "201":
+          description: "GPU chip added successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUChipResponse"
+        "400":
+          description: "Invalid GPU chip model data"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    put:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    patch:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    delete:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+
+  "/gpuchips/{gpuChipId}":
+    get:
+      summary: "Get a single GPU chip"
+      description: "Returns a single GPU chip from the database"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Fetch successful"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUChipResponse"
+        "404":
+          description: "GPU chip not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    post:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    put:
+      summary: "Update a single GPU chip"
+      description: "Updates a single GPU chip in the database"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to update"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        description: "The GPU chip to update"
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GPUChipModel"
+      responses:
+        "200":
+          description: "GPU chip updated successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUChipResponse"
+        "400":
+          description: "Invalid GPU chip model data"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+        "404":
+          description: "GPU chip not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    patch:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    delete:
+      summary: "Delete a single GPU chip"
+      description: "Deletes a single GPU chip from the database"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to delete"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "GPU chip deleted successfully"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SingleGPUChipResponse"
+        "404":
+          description: "GPU chip not found"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+        "500":
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+
+  "/gpuchips/{gpuChipId}/gpus":
+    get:
+      summary: "Get all GPUs containing a GPU chip"
+      description: "Returns a list of all the GPUs containing the selected GPU chip"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch GPUs for"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Fetch successful"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MultipleGPUResponse"
+        "204":
+          description: "Database empty"
+    post:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch GPUs for"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    put:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch GPUs for"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    patch:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch GPUs for"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+    delete:
+      summary: "Unimplemented"
+      description: "This method is not implemented for the requested resource"
+      parameters:
+        - name: "gpuChipId"
+          in: "path"
+          description: "The ID of the GPU chip to fetch GPUs for"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "501":
+          description: "This method is not implemented for the requested resource"
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+
+components:
+  schemas:
+    # =================
+    # Responses
+    # =================
+    GenericResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Response status"
+        message:
+          type: string
+          description: "Response message"
+        response:
+          type: object
+          description: "Generic response dict"
+      required: [ status, message, response ]
+
+    # GPU Responses
+    SingleGPUResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Response status"
+        message:
+          type: string
+          description: "Response message"
+        response:
+          "$ref": "#/components/schemas/GPUModel"
+      required: [ status, message, response ]
+    MultipleGPUResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Response status"
+        message:
+          type: string
+          description: "Response message"
+        response:
+          type: array
+          items:
+            "$ref": "#/components/schemas/GPUModel"
+      required: [ status, message, response ]
+
+    # GPU Chip Responses
+    SingleGPUChipResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Response status"
+        message:
+          type: string
+          description: "Response message"
+        response:
+          "$ref": "#/components/schemas/GPUChipModel"
+      required: [ status, message, response ]
+    MultipleGPUChipResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Response status"
+        message:
+          type: string
+          description: "Response message"
+        response:
+          type: array
+          items:
+            "$ref": "#/components/schemas/GPUChipModel"
+      required: [ status, message, response ]
+
+    # =================
+    # Models
+    # =================
+    GPUModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The unique identifier of the GPU model"
+        modelName:
+          type: string
+          description: "The name of the GPU model"
+        manufacturer:
+          type: string
+          description: "The manufacturer of the GPU model"
+        chip:
+          "$ref": "#/components/schemas/GPUChipModel"
+        launchDate:
+          type: string
+          description: "The date the GPU model was launched"
+        launchPrice:
+          type: string
+          description: "The launch price of the GPU model"
+        memory:
+          type: integer
+          description: "The amount of memory in the GPU model"
+        computeUnits:
+          type: integer
+          description: "The number of compute units in the GPU model"
+        performance:
+          type: number
+          description: "The performance of the GPU model"
+      required:
+        - modelName
+        - manufacturer
+        - chip
+        - launchDate
+        - launchPrice
+        - memory
+        - computeUnits
+        - performance
+    GPUChipModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The unique identifier of the GPU chip"
+        chipName:
+          type: string
+          description: "The name of the chip"
+        architecture:
+          type: string
+          description: "The architecture of the chip"
+        fab:
+          type: string
+          description: "The fabrication process of the chip"
+        transistors:
+          type: number
+          description: "The number of transistors in the chip"
+        dieSize:
+          type: number
+          description: "The size of the chip's die"
+      required:
+        - chipName
+        - architecture
+        - fab
+        - transistors
+        - dieSize
