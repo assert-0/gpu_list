@@ -1,12 +1,17 @@
 from typing import Optional
 
 from bson import ObjectId
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
+from .consts import (
+    GPUJsonLdContext, GPUJsonLdType, GPUChipJsonLdContext, GPUChipJsonLdType
+)
 from ...tools.model import GPUModel, GPUChip, GPUChipReference
 
 
 class GPUChipView(BaseModel):
+    ld_context: dict = Field(alias="@context", default=GPUChipJsonLdContext)
+    ld_type: str = Field(alias="@type", default=GPUChipJsonLdType)
     id: Optional[str] = None
     chipName: str
     architecture: str
@@ -35,6 +40,8 @@ class GPUChipView(BaseModel):
         )
 
 class GPUView(BaseModel):
+    ld_context: dict = Field(alias="@context", default=GPUJsonLdContext)
+    ld_type: str = Field(alias="@type", default=GPUJsonLdType)
     id: Optional[str] = None
     modelName: str
     manufacturer: str

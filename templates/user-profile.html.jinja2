@@ -1,0 +1,14 @@
+<h1>
+    User profile
+</h1>
+
+<button style="position: absolute; top: 10px; right: 10px; font-size: 1.2rem; padding: 0.5em 1em;"
+                onclick="window.location.href='/'">
+    Home
+</button>
+
+{% for key, value in user.userinfo.items() %}
+    <p>
+        <strong>{{ key }}</strong>: {{ value }}
+    </p>
+{% endfor %}
